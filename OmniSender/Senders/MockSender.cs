@@ -5,6 +5,7 @@ namespace OmniRequestSender
 {
     public class MockSender<Tout, Tin> : IRequstSender<Tout> where Tin : class
     {
+
         IConverter<Tin> _converter;
 
         Func<Tin, Tout> _executer;
