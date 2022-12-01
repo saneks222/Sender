@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32819.101
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OmniRequestSender", "OmniRequestSender\OmniRequestSender.csproj", "{AE19A347-0334-4FC9-AED6-5ECA3A296616}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OmniSender", "OmniSender\OmniSender.csproj", "{2F88877D-AEBA-4A21-BF58-DE18EDE23633}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AE19A347-0334-4FC9-AED6-5ECA3A296616}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE19A347-0334-4FC9-AED6-5ECA3A296616}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE19A347-0334-4FC9-AED6-5ECA3A296616}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE19A347-0334-4FC9-AED6-5ECA3A296616}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F88877D-AEBA-4A21-BF58-DE18EDE23633}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F88877D-AEBA-4A21-BF58-DE18EDE23633}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F88877D-AEBA-4A21-BF58-DE18EDE23633}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F88877D-AEBA-4A21-BF58-DE18EDE23633}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {29C5B16F-CAA6-455A-8398-A4E19570F7B4}
+	EndGlobalSection
+EndGlobal
