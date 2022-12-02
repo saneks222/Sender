@@ -122,7 +122,7 @@ public class HttpRequestData : IHttpRequestData
 ## HttpSender
 **Пространство имен**: OmniRequestSender
 
-Представляет класс реализующий логику отправки Http запроса имплементирует интерфейс **_IRequstSender<HttpResponseMessage>_**
+Представляет класс реализующий логику отправки Http запроса имплементирует интерфейс **_IRequestSender<HttpResponseMessage>_**
 ```C#
 public class HttpSender : IRequestSender<HttpResponseMessage>
 ```
