@@ -1,3 +1,162 @@
+# Содержание
++ Перечисления
+  + AuthType  
++ Интерфейсы и абстрации
+  + AbstarctAuthBuilder
+  + IConverter
+  + IHttpRequestData
+  + IRequstSender
++ Конкретные реализации
+  + BasicAuthBuilder
+  + BearerTokenAuthBuilder
+  + HttpRequestData
+  + HttpSender
+  + MockSender
++ Примеры вызова  
+  + Mock запрос без конвертора
+  + Mock запрос с конвертором
+  + Http Запрос с базовой аутентификацией
+  + Http запрос с Bearer аутентификацией
+___
+# Перечисления
+## AuthType
+### Поля
++ **Basic**
++ **Bearer**
+___
+# Интерфейсы и абстрации
+## AbstarctAuthBuilder 
+**Пространство имен**: OmniRequestSender
+
+Представляет абстракную сущность для порождения конкретных реализаций строителей формирующих объеты для аутентификации 
+
+```C#
+public abstract class AbstarctAuthBuilder
+```
+### Поля и свойства 
++ **AuthType _authType** определяет тип аутентификации на основе перечисления **AuthType**
+### Методы 
++ **AuthenticationHeaderValue Build()** конструирует и возвращает объект для аутентификации 
++ **AbstarctAuthBuilder SetAuthType()** устанавливает тип аутентификации
++ **AbstarctAuthBuilder SetBearerToken(string token)** устанавлевает токен для аутентификации 
++ **AbstarctAuthBuilder SetUserName(string username)** Устанавливает логин пользователя 
++ **AbstarctAuthBuilder SetPassword(string password)** Устанавливает пароль пользователя 
+
+## IConverter
+**Пространство имен**: OmniRequestSender
+
+Представляет интерфейс для ковертации любого переданного типа в заданный 
+```C#
+public interface IConverter<Tout> where Tout : class
+```
+### Методы
++ **Tout Convert(object obj)** принемает обьект любого типа и конвертирует в заданный тип
+
+## IHttpRequestData
+**Пространство имен**: OmniRequestSender
+
+Представляет интерфейс описывающий объект для отправки http запроса 
+```C#
+public interface IHttpRequestData
+```
+### Свойства
++ **string Url** содержет адрес запрашиваемого ресурса
++ **string Data** содержит страку с телом запросв
++ **Dictionary<string, string> Headers** содержит заголовки запроса
++ **AuthenticationHeaderValue Credentionals** содержит объет аутентификации для запроса
+
+## IRequstSender
+**Пространство имен**: OmniRequestSender
+
+Представляет интерфейс отправителя запроса 
+```C#
+public interface IRequstSender<Tout> 
+```
+### Методы 
++ **Task<Tout> SendAsync(object requestData)** принимает объект запрса и отправляет запрос возвращая задынный тип ответа
+___
+# Конкретные реализации
+## BasicAuthBuilder
+**Пространство имен**: OmniRequestSender
+
+Представляет класс унаследованный от **AbstarctAuthBuilder** реализует логику конструирования объекта с базовым типом аутентификации
+
+```C#
+public class BasicAuthBuilder : AbstarctAuthBuilder
+```
+### Поля и свойства 
++ **string _username** содержит логин пользователя 
++ **string _password** содержит пароль пользователя
+
+### Методы 
++ **string GetBase64AuthString(string username, string password)** формирует base64String нужного формата из логина и пароля
+
+## BearerTokenAuthBuilder
+**Пространство имен**: OmniRequestSender
+
+Представляет класс унаследованный от **AbstarctAuthBuilder** реализует логику конструирования объекта аутентификации на основе Bearer токена
+
+```C#
+public class BearerTokenAuthBuilder : AbstarctAuthBuilder
+```
+### Поля и свойства 
++ **string _bearerToken** содержит токен аутентификации
+
+## HttpRequestData
+**Пространство имен**: OmniRequestSender
+
+Представляет конкретный класс с набором параметров для отправки Http запроса реализует интерфейс **_IHttpRequestData_**
+
+```C#
+public class HttpRequestData : IHttpRequestData
+```
+### Конструкторы
++ **HttpRequestData(string url, object data=null Dictionary<string, string> headers=null AuthenticationHeaderValue credentionals = null)**
++  **HttpRequestData(string url, Dictionary<string, string> headers, AuthenticationHeaderValue credentionals)**
++ **HttpRequestData(string url, object data, AuthenticationHeaderValue credentionals)**
++ **HttpRequestData(string url, object data,Dictionary<string, string> headers)**
++ **HttpRequestData(string url, AuthenticationHeaderValue credentionals)**
++ **HttpRequestData(string url, Dictionary<string, string> headers)**
++ **HttpRequestData(string url, object data)**
+
+## OmniRequestSender
+**Пространство имен**: OmniRequestSender
+
+Представляет класс реализующий логику отправки Http запроса имплементирует интерфейс **_IRequstSender<HttpResponseMessage>_**
+```C#
+public class HttpSender : IRequstSender<HttpResponseMessage>
+```
+### Конструкторы
++ **HttpSender(HttpMethod method)** 
+
+### Поля и свойства
++ **HttpClient _client** экземпляр http клиента отправляющего запрос
++ **HttpMethod _method** экземпляр **HttpMethod** содержит информацию о типе запроса
+
+### Методы 
++ **async Task<HttpResponseMessage> SendAsync(object requestData)** реализует логику отправки http запроса
+
+## MockSender
+**Пространство имен**: OmniRequestSender
+
+Представляет класс реализующий возможность имитации отправки запроса имплементирует интерфейс **_IRequstSender<Tout>_**
+```C#
+public class MockSender<Tout, Tin> : IRequstSender<Tout> where Tin : class
+```
+
+### Поля и свойства
++ **IConverter<Tin> _converter** содержет экземпляр конвертора для параметров запроса 
++ **Func<Tin, Tout> _executer** содержит функцию реализующую логику эмитации запроса
+
+### Конструкторы
++ **MockSender(Func<Tin, Tout> executer)**
++ ***MockSender(IConverter<Tin> converter, Func<Tin, Tout> executer)**
+
+В создания объекта с конструктором не принимающим конвертор будет произведена попытка приведения объекта с аргументами к типу **Tin**
+
+### Методы 
++ **async Task<Tout> SendAsync(object requestData)** реазлизует логику отправки запроса вызывая ***_executer* с которым был сформирован объект
+___
 # Примеры вызова
 ## Mock запрос без конвертора
 ```C#
