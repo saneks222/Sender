@@ -47,7 +47,7 @@
     <Compile Include="Interfaces\AbstarctAuthBuilder.cs" />
     <Compile Include="Interfaces\IConverter.cs" />
     <Compile Include="Interfaces\IHttpRequestData.cs" />
-    <Compile Include="Interfaces\IRequstSender.cs" />
+    <Compile Include="Interfaces\IRequestSender.cs" />
     <Compile Include="Auth\BasicAuthBuilder.cs" />
     <Compile Include="Auth\BearerTokenAuthBuilder.cs" />
     <Compile Include="Senders\HttpRequestData.cs" />

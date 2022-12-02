@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace OmniRequestSender
 {
-    public class MockSender<Tout, Tin> : IRequstSender<Tout> where Tin : class
+    public class MockSender<Tout, Tin> : IRequestSender<Tout> where Tin : class
     {
 
         IConverter<Tin> _converter;

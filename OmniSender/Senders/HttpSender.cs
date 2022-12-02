@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace OmniRequestSender
 {
-    public class HttpSender : IRequstSender<HttpResponseMessage>
+    public class HttpSender : IRequestSender<HttpResponseMessage>
     {
         private HttpClient _client = new HttpClient();
         private HttpMethod _method;
