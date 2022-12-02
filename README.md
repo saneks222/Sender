@@ -119,12 +119,12 @@ public class HttpRequestData : IHttpRequestData
 + **HttpRequestData(string url, Dictionary<string, string> headers)**
 + **HttpRequestData(string url, object data)**
 
-## OmniRequestSender
+## HttpSender
 **Пространство имен**: OmniRequestSender
 
 Представляет класс реализующий логику отправки Http запроса имплементирует интерфейс **_IRequstSender<HttpResponseMessage>_**
 ```C#
-public class HttpSender : IRequstSender<HttpResponseMessage>
+public class HttpSender : IRequestSender<HttpResponseMessage>
 ```
 ### Конструкторы
 + **HttpSender(HttpMethod method)** 
@@ -141,7 +141,7 @@ public class HttpSender : IRequstSender<HttpResponseMessage>
 
 Представляет класс реализующий возможность имитации отправки запроса имплементирует интерфейс **_IRequstSender<Tout>_**
 ```C#
-public class MockSender<Tout, Tin> : IRequstSender<Tout> where Tin : class
+public class MockSender<Tout, Tin> : IRequestSender<Tout> where Tin : class
 ```
 
 ### Поля и свойства
