@@ -39,10 +39,9 @@ namespace OmniRequestSender
                 if (data.Data != null&& data.Data!="")
                     requestMsg.Content = new StringContent(data.Data);
 
-                using (var response = await _client.SendAsync(requestMsg))
-                {
+                var response = await _client.SendAsync(requestMsg);
                     return response;
-                }
+                
             }
         }
 
