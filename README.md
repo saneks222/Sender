@@ -73,7 +73,7 @@ public interface IHttpRequestData
 public interface IRequstSender<Tout> 
 ```
 ### Методы 
-+ **Task<Tout> SendAsync(object requestData)** принимает объект запрса и отправляет запрос возвращая задынный тип ответа
++ **Task<Tout> SendAsync(object requestData,CancellationToken token = default)** принимает объект, а так же токен отмены(опционально), запрса и отправляет запрос возвращая задынный тип ответа
 ___
 # Конкретные реализации
 ## BasicAuthBuilder
@@ -134,7 +134,7 @@ public class HttpSender : IRequestSender<HttpResponseMessage>
 + **HttpMethod _method** экземпляр **HttpMethod** содержит информацию о типе запроса
 
 ### Методы 
-+ **async Task<HttpResponseMessage> SendAsync(object requestData)** реализует логику отправки http запроса
++ **async Task<HttpResponseMessage> SendAsync(object requestData,CancellationToken token = default)** реализует логику отправки http запроса,опционально принимает токен отмены операции.
 
 ## MockSender
 **Пространство имен**: OmniRequestSender
@@ -155,7 +155,7 @@ public class MockSender<Tout, Tin> : IRequestSender<Tout> where Tin : class
 В создания объекта с конструктором не принимающим конвертор будет произведена попытка приведения объекта с аргументами к типу **Tin**
 
 ### Методы 
-+ **async Task<Tout> SendAsync(object requestData)** реазлизует логику отправки запроса вызывая ***_executer* с которым был сформирован объект
++ **async Task<Tout> SendAsync(object requestData,CancellationToken token = default)** реазлизует логику отправки запроса вызывая ***_executer* с которым был сформирован объект,в случае отмены операции через CancellationToken выбрасывает исключение taskcanceledexception.
 ___
 # Примеры вызова
 ## Mock запрос без конвертора
