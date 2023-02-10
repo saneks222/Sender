@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
+using OmniRequestSender.Helpers;
+
 
 namespace OmniRequestSender
 {
@@ -14,8 +17,11 @@ namespace OmniRequestSender
             _method = method;
         }
 
-        public async Task<HttpResponseMessage> SendAsync(object requestData)
+        public async Task<HttpResponseMessage> SendAsync(object requestData,CancellationToken token = default)
         {
+            if (token.IsCancellationRequested)
+                return ResponseHelper.CancellMessage(); 
+
             var data = (IHttpRequestData)requestData;
 
             if (_method == HttpMethod.Get && data.Credentionals==null) 
@@ -44,6 +50,5 @@ namespace OmniRequestSender
                 
             }
         }
-
     }
 }

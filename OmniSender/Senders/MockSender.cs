@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace OmniRequestSender
@@ -20,8 +21,10 @@ namespace OmniRequestSender
             _executer = executer;
         }
 
-        public async Task<Tout> SendAsync(object requestData)
+        public async Task<Tout> SendAsync(object requestData,CancellationToken token=default)
         {
+            if (token.IsCancellationRequested)
+                throw new OperationCanceledException();
 
             if (_converter == null)
             {
