@@ -18,7 +18,7 @@ namespace OmniRequestSender
         {
             var data = (IHttpRequestData)requestData;
 
-            if (_method == HttpMethod.Get) 
+            if (_method == HttpMethod.Get && data.Credentionals==null) 
             {
                 return await _client.GetAsync(data.Url);
             }
