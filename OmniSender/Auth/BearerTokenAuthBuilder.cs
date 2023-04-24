@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Net.Http.Headers;
 
-namespace OmniRequestSender
+namespace RequestSender
 {
     public class BearerTokenAuthBuilder : AbstarctAuthBuilder
     {

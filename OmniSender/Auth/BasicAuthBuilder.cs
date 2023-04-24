@@ -3,7 +3,7 @@ using System.Text;
 using System.Net.Http.Headers;
 
 
-namespace OmniRequestSender
+namespace RequestSender
 {
     public class BasicAuthBuilder : AbstarctAuthBuilder
     {

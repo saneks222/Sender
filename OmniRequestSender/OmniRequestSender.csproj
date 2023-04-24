@@ -150,9 +150,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\OmniSender\OmniSender.csproj">
+    <ProjectReference Include="..\OmniSender\Sender.csproj">
       <Project>{2f88877d-aeba-4a21-bf58-de18ede23633}</Project>
-      <Name>OmniSender</Name>
+      <Name>Sender</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -3,7 +3,7 @@ using System.Net.Http.Headers;
 using System.Collections.Generic;
 
 
-namespace OmniRequestSender
+namespace RequestSender
 {
     public class HttpRequestData : IHttpRequestData
     {

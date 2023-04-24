@@ -2,7 +2,7 @@
 using System.Net.Http.Headers;
 
 
-namespace OmniRequestSender
+namespace RequestSender
 {
     public enum  AuthType
     {

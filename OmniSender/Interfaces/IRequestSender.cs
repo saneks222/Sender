@@ -2,7 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace OmniRequestSender
+namespace RequestSender
 {
     public interface IRequestSender<Tout> 
     {

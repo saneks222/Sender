@@ -2,7 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace OmniRequestSender
+namespace RequestSender
 {
     public class MockSender<Tout, Tin> : IRequestSender<Tout> where Tin : class
     {
@@ -19,6 +19,11 @@ namespace OmniRequestSender
         {
             _converter = converter;
             _executer = executer;
+        }
+
+        public void SetConverter(IConverter<Tin> converter) 
+        {
+            _converter= converter;
         }
 
         public async Task<Tout> SendAsync(object requestData,CancellationToken token=default)

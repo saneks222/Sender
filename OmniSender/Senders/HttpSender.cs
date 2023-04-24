@@ -2,10 +2,10 @@
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
-using OmniRequestSender.Helpers;
+using RequestSender.Helpers;
 
 
-namespace OmniRequestSender
+namespace RequestSender
 {
     public class HttpSender : IRequestSender<HttpResponseMessage>
     {
@@ -15,6 +15,11 @@ namespace OmniRequestSender
         public HttpSender(HttpMethod method) 
         {
             _method = method;
+        }
+
+        public void SetHttpMethod(HttpMethod method) 
+        {
+            _method=method;
         }
 
         public async Task<HttpResponseMessage> SendAsync(object requestData,CancellationToken token = default)
