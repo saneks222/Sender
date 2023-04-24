@@ -135,7 +135,7 @@ public class HttpSender : IRequestSender<HttpResponseMessage>
 
 ### Методы 
 + **async Task<HttpResponseMessage> SendAsync(object requestData,CancellationToken token = default)** реализует логику отправки http запроса,опционально принимает токен отмены операции.
-+ **async void SetHttpMethod(HttpMethod method)** устанавливает HttpMethod с которым будет отправляться запрос.
++ **void SetHttpMethod(HttpMethod method)** устанавливает HttpMethod с которым будет отправляться запрос.
 
 ## MockSender
 **Пространство имен**: OmniRequestSender
@@ -157,7 +157,7 @@ public class MockSender<Tout, Tin> : IRequestSender<Tout> where Tin : class
 
 ### Методы 
 + **async Task<Tout> SendAsync(object requestData,CancellationToken token = default)** реазлизует логику отправки запроса вызывая ***_executer* с которым был сформирован объект,в случае отмены операции через CancellationToken выбрасывает исключение taskcanceledexception.
-+ **async void SetConverter(IConverter<Tin> converter)** устанавливает конвертор с которым будет вызываться запрос.
++ **void SetConverter(IConverter<Tin> converter)** устанавливает конвертор с которым будет вызываться запрос.
 ___
 # Примеры вызова
 ## Mock запрос без конвертора
