@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\OmniSender\Sender.csproj" />
+    <ProjectReference Include="..\Sender\Sender.csproj" />
   </ItemGroup>
 
 </Project>
