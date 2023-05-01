@@ -128,6 +128,7 @@ public class HttpSender : IRequestSender<HttpResponseMessage>
 ```
 ### Конструкторы
 + **HttpSender(HttpMethod method)** 
++ **public HttpSender(HttpMethod method, MediaTypeHeaderValue contentType)** 
 
 ### Поля и свойства
 + **HttpClient _client** экземпляр http клиента отправляющего запрос
