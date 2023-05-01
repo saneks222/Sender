@@ -62,6 +62,17 @@ namespace SenderTest
         }
 
         [Test]
+        public void SendHttpPostWithContentType()
+        {
+            var data = new HttpRequestData(_url);
+            _httpSender.SetContentType(new MediaTypeHeaderValue("application/json"));
+            _httpSender.SetHttpMethod(HttpMethod.Post);
+            var task = _httpSender.SendAsync(data);
+            task.Wait();
+            Assert.AreEqual(task.Result.StatusCode, HttpStatusCode.OK);
+        }
+
+        [Test]
         public void SendHttpPost()
         {
             var data = new HttpRequestData(_url);
