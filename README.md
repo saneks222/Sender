@@ -132,7 +132,7 @@ public class HttpSender : IRequestSender<HttpResponseMessage>
 ### Поля и свойства
 + **HttpClient _client** экземпляр http клиента отправляющего запрос
 + **HttpMethod _method** экземпляр **HttpMethod** содержит информацию о типе запроса
-+ **MediaTypeHeaderValue _mediaTypeHeaderValue экземпляр объекта содержащий contentType запроса
++ **MediaTypeHeaderValue** _mediaTypeHeaderValue экземпляр объекта содержащий contentType запроса
 ### Методы 
 + **async Task<HttpResponseMessage> SendAsync(object requestData,CancellationToken token = default)** реализует логику отправки http запроса,опционально принимает токен отмены операции.
 + **void SetHttpMethod(HttpMethod method)** устанавливает HttpMethod с которым будет отправляться запрос.
