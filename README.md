@@ -128,7 +128,7 @@ public class HttpSender : IRequestSender<HttpResponseMessage>
 ```
 ### Конструкторы
 + **HttpSender(HttpMethod method)** 
-+ **public HttpSender(HttpMethod method, MediaTypeHeaderValue contentType)** 
++ **HttpSender(HttpMethod method, MediaTypeHeaderValue contentType)** 
 
 ### Поля и свойства
 + **HttpClient _client** экземпляр http клиента отправляющего запрос
@@ -153,7 +153,7 @@ public class MockSender<Tout, Tin> : IRequestSender<Tout> where Tin : class
 
 ### Конструкторы
 + **MockSender(Func<Tin, Tout> executer)**
-+ ***MockSender(IConverter<Tin> converter, Func<Tin, Tout> executer)**
++ **MockSender(IConverter<Tin> converter, Func<Tin, Tout> executer)**
 
 В создания объекта с конструктором не принимающим конвертор будет произведена попытка приведения объекта с аргументами к типу **Tin**
 
